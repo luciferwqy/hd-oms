@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hd.oms.dao.UmsRoleMapper">
+  <resultMap id="BaseResultMap" type="com.hd.oms.model.po.UmsRole">
+    <id column="ID" jdbcType="CHAR" property="id" />
+    <result column="PARENT_ID" jdbcType="CHAR" property="parentId" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="CREAT_TIME" jdbcType="CHAR" property="creatTime" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENT_ID, ROLE_NAME, CREAT_TIME, DESCRIPTION, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_ROLE
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from UMS_ROLE
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hd.oms.model.po.UmsRole">
+    insert into UMS_ROLE (ID, PARENT_ID, ROLE_NAME, 
+      CREAT_TIME, DESCRIPTION, STATUS
+      )
+    values (#{id,jdbcType=CHAR}, #{parentId,jdbcType=CHAR}, #{roleName,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=CHAR}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hd.oms.model.po.UmsRole">
+    insert into UMS_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="roleName != null">
+        ROLE_NAME,
+      </if>
+      <if test="creatTime != null">
+        CREAT_TIME,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=CHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=CHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hd.oms.model.po.UmsRole">
+    update UMS_ROLE
+    <set>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=CHAR},
+      </if>
+      <if test="roleName != null">
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        CREAT_TIME = #{creatTime,jdbcType=CHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hd.oms.model.po.UmsRole">
+    update UMS_ROLE
+    set PARENT_ID = #{parentId,jdbcType=CHAR},
+      ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      CREAT_TIME = #{creatTime,jdbcType=CHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="listAdminRoles" parameterType="java.lang.String" resultType="java.lang.String">
+  	select role_name from UMS_ROLE ur 
+  	left join ums_admin_role_relation uarr on ur.id = uarr.role_id 
+  	where uarr.admin_id = #{id,jdbcType=CHAR}
+  </select>
+</mapper>

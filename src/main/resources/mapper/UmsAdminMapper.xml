@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hd.oms.dao.UmsAdminMapper">
+  <resultMap id="BaseResultMap" type="com.hd.oms.model.po.UmsAdmin">
+    <id column="ID" jdbcType="CHAR" property="id" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="BANGE" jdbcType="VARCHAR" property="bange" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+    <result column="USER_TYPE" jdbcType="CHAR" property="userType" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="CREATE_TIME" jdbcType="CHAR" property="createTime" />
+    <result column="LOGIN_TIME" jdbcType="CHAR" property="loginTime" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="MODIFIER" jdbcType="CHAR" property="modifier" />
+    <result column="MODIFIE_TIME" jdbcType="CHAR" property="modifieTime" />
+    <result column="ORG_ID" jdbcType="CHAR" property="orgId" />
+    <result column="ICON" jdbcType="VARCHAR" property="icon" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USERNAME, BANGE, PASSWORD, NICK_NAME, USER_TYPE, EMAIL, CREATE_TIME, LOGIN_TIME, 
+    STATUS, MODIFIER, MODIFIE_TIME, ORG_ID, ICON
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_ADMIN
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <select id="selectByBange" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from UMS_ADMIN
+    where BANGE = #{bange,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from UMS_ADMIN
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hd.oms.model.po.UmsAdmin">
+    insert into UMS_ADMIN (ID, USERNAME, BANGE, 
+      PASSWORD, NICK_NAME, USER_TYPE, 
+      EMAIL, CREATE_TIME, LOGIN_TIME, 
+      STATUS, MODIFIER, MODIFIE_TIME, 
+      ORG_ID, ICON)
+    values (#{id,jdbcType=CHAR}, #{username,jdbcType=VARCHAR}, #{bange,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{userType,jdbcType=CHAR}, 
+      #{email,jdbcType=VARCHAR}, #{createTime,jdbcType=CHAR}, #{loginTime,jdbcType=CHAR}, 
+      #{status,jdbcType=CHAR}, #{modifier,jdbcType=CHAR}, #{modifieTime,jdbcType=CHAR}, 
+      #{orgId,jdbcType=CHAR}, #{icon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hd.oms.model.po.UmsAdmin">
+    insert into UMS_ADMIN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="bange != null">
+        BANGE,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="nickName != null">
+        NICK_NAME,
+      </if>
+      <if test="userType != null">
+        USER_TYPE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="modifieTime != null">
+        MODIFIE_TIME,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="icon != null">
+        ICON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="bange != null">
+        #{bange,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=CHAR},
+      </if>
+      <if test="modifieTime != null">
+        #{modifieTime,jdbcType=CHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=CHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hd.oms.model.po.UmsAdmin">
+    update UMS_ADMIN
+    <set>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="bange != null">
+        BANGE = #{bange,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        USER_TYPE = #{userType,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME = #{loginTime,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=CHAR},
+      </if>
+      <if test="modifieTime != null">
+        MODIFIE_TIME = #{modifieTime,jdbcType=CHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=CHAR},
+      </if>
+      <if test="icon != null">
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hd.oms.model.po.UmsAdmin">
+    update UMS_ADMIN
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      BANGE = #{bange,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      USER_TYPE = #{userType,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=CHAR},
+      LOGIN_TIME = #{loginTime,jdbcType=CHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      MODIFIER = #{modifier,jdbcType=CHAR},
+      MODIFIE_TIME = #{modifieTime,jdbcType=CHAR},
+      ORG_ID = #{orgId,jdbcType=CHAR},
+      ICON = #{icon,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="getPermissionList" resultMap="com.hd.oms.dao.UmsPermissionMapper.BaseResultMap">
+        SELECT
+            p.*
+        FROM
+            ums_admin_role_relation ar
+            LEFT JOIN ums_role r ON ar.role_id = r.id
+            LEFT JOIN ums_role_permission_relation rp ON r.id = rp.role_id
+            LEFT JOIN ums_permission p ON rp.permission_id = p.id
+        WHERE
+            ar.admin_id = #{adminId}
+            AND p.id IS NOT NULL
+            AND p.id NOT IN (
+                SELECT
+                    p.id
+                FROM
+                    ums_admin_permission_relation pr
+                    LEFT JOIN ums_permission p ON pr.permission_id = p.id
+                WHERE
+                    pr.permission_type = '-1'
+                    AND pr.admin_id = #{adminId}
+            )
+        UNION
+        SELECT
+            p.*
+        FROM
+            ums_admin_permission_relation pr
+            LEFT JOIN ums_permission p ON pr.permission_id = p.id
+        WHERE
+            pr.permission_type = '1'
+            AND pr.admin_id = #{adminId}
+    </select>
+</mapper>

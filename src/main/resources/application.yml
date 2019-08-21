@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev #默认为开发环境
+
+mybatis:
+  mapper-locations:
+    classpath:mapper/*.xml
+    
+########################################## pagehelper分页插件配置
+pagehelper:
+   helperDialect: oracle
+   reasonable: true
+   supportMethodsArguments: true
+   params: count=countSql
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  expiration: 7200 #JWT的超期限时间(60*60*2)
+  tokenHead: Bearer  #JWT负载中拿到开头
+
+logging:
+  level:
+    root: info #日志配置DEBUG,INFO,WARN,ERROR
+    com.hd.oms: debug
+#  file: demo_log.log #配置日志生成路径
+#  path: /var/logs #配置日志文件名称
